@@ -32,6 +32,12 @@ public class ProductControler {
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
+    @GetMapping("/name")
+    public ResponseEntity<List<ResponseProductDto>> listOrder() {
+        var products = this.productService.orderByName();
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
     @PutMapping("/{idProduct}")
     public ResponseEntity<ResponseProductDto> update(@PathVariable("idProduct") String idProduct,
             @RequestBody UpdateProductDto updateProductDto) {

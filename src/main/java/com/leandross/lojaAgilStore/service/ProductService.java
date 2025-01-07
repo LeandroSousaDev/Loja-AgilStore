@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -50,6 +51,31 @@ public class ProductService {
                         product.getAmount(),
                         product.getPrice()))
                 .toList();
+    }
+
+    public List<ResponseProductDto> orderByName() {
+        var allProducts = this.productRepository.findAll();
+
+        var orderedList = allProducts.stream().sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                .collect(Collectors.toList());
+
+        return orderedList
+                .stream()
+                .map(product -> new ResponseProductDto(
+                        product.getIdProduct(),
+                        product.getName(),
+                        product.getCategory(),
+                        product.getAmount(),
+                        product.getPrice()))
+                .toList();
+    }
+
+    public List<ResponseProductDto> orderByAmount() {
+        return null;
+    }
+
+    public List<ResponseProductDto> orderByPrice() {
+        return null;
     }
 
     public ResponseProductDto updateProduct(String idProduct, UpdateProductDto updateProductDto) {
