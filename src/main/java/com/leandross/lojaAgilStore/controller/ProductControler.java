@@ -53,7 +53,7 @@ public class ProductControler {
             var products = this.productService.listById(idProduct);
             return ResponseEntity.status(HttpStatus.OK).body(products);
         } else if (name != null) {
-            var products = this.productService.listByName(name);
+            var products = this.productService.listByNameParcial(name);
             return ResponseEntity.status(HttpStatus.OK).body(products);
         }
         return null;

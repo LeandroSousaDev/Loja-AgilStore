@@ -111,27 +111,8 @@ public class ProductService {
 
     }
 
-    public List<ResponseProductDto> listByName(String name) {
-        var listProduct = this.productRepository.findByName(name);
-
-        if (listProduct.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
-        }
-
-        return listProduct
-                .stream()
-                .map(product -> new ResponseProductDto(
-                        product.getIdProduct(),
-                        product.getName(),
-                        product.getCategory(),
-                        product.getAmount(),
-                        product.getPrice()))
-                .toList();
-
-    }
-
-    public List<ResponseProductDto> listByCategory(String category) {
-        var listProduct = this.productRepository.findByCategory(category);
+    public List<ResponseProductDto> listByNameParcial(String name) {
+        var listProduct = this.productRepository.findByNameContaining(name);
 
         if (listProduct.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
