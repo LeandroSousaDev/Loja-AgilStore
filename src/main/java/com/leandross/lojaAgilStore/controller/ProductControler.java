@@ -5,6 +5,7 @@ import com.leandross.lojaAgilStore.dto.ResponseProductDto;
 import com.leandross.lojaAgilStore.dto.UpdateProductDto;
 import com.leandross.lojaAgilStore.service.ProductService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,20 @@ public class ProductControler {
     }
 
     @GetMapping("/name")
-    public ResponseEntity<List<ResponseProductDto>> listOrder() {
+    public ResponseEntity<List<ResponseProductDto>> listOrderByName() {
         var products = this.productService.orderByName();
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
+    @GetMapping("/amount")
+    public ResponseEntity<List<ResponseProductDto>> listOrderByAmount() {
+        var products = this.productService.orderByAmount();
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
+    @GetMapping("/price")
+    public ResponseEntity<List<ResponseProductDto>> listOrderByPrice() {
+        var products = this.productService.orderByPrice();
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 

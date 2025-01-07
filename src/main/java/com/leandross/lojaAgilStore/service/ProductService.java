@@ -71,11 +71,37 @@ public class ProductService {
     }
 
     public List<ResponseProductDto> orderByAmount() {
-        return null;
+        var allProducts = this.productRepository.findAll();
+
+        var orderedList = allProducts.stream().sorted((o1, o2) -> o1.getAmount().compareTo(o2.getAmount()))
+                .collect(Collectors.toList());
+
+        return orderedList
+                .stream()
+                .map(product -> new ResponseProductDto(
+                        product.getIdProduct(),
+                        product.getName(),
+                        product.getCategory(),
+                        product.getAmount(),
+                        product.getPrice()))
+                .toList();
     }
 
     public List<ResponseProductDto> orderByPrice() {
-        return null;
+        var allProducts = this.productRepository.findAll();
+
+        var orderedList = allProducts.stream().sorted((o1, o2) -> o1.getPrice().compareTo(o2.getPrice()))
+                .collect(Collectors.toList());
+
+        return orderedList
+                .stream()
+                .map(product -> new ResponseProductDto(
+                        product.getIdProduct(),
+                        product.getName(),
+                        product.getCategory(),
+                        product.getAmount(),
+                        product.getPrice()))
+                .toList();
     }
 
     public ResponseProductDto updateProduct(String idProduct, UpdateProductDto updateProductDto) {
