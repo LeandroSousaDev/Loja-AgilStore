@@ -25,7 +25,7 @@ https://www.docker.com/get-started/
 https://hub.docker.com/_/postgres
 `````
 
----
+***
 
 ## Descrição;
 
@@ -55,7 +55,7 @@ estoque e de interagir com os clientes, então essa nessecidade inspirou a cria�
    - id do produto
    - Nome - Parcial e completo
 
-___
+***
 
 ## Rotas;
 
@@ -86,8 +86,8 @@ ___
 	"price": 10
 }
 ```
-***
 
+***
 ### - Listagem
 
 #### End Point
@@ -138,6 +138,7 @@ GET http://localhost:8080/product/price
 ]
 ```
 
+***
 ### - Atualização
 
 #### End Point
@@ -168,6 +169,7 @@ PUT http://localhost:8080/product/{idProduto}
 }
 ```
 
+***
 ### - Excluir
 
 #### End Point
@@ -177,6 +179,8 @@ DELETE http://localhost:8080/product/{idProduto}
 
 ##### Obs: Essa rota não tem corpo de resposta, se a operação for bem sucedida voce vera o código de 204.
 
+
+***
 ### - Pesquisa
 
 #### End point par buscar por nome
