@@ -61,7 +61,7 @@ public class ProductControler {
     @DeleteMapping("/{idProduct}")
     public ResponseEntity<String> delete(@PathVariable("idProduct") String idProduct) throws CustomException {
         this.productService.deleteProduct(idProduct);
-        return ResponseEntity.status(HttpStatus.OK).body("Produto apagado com sucesso");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/find/")
