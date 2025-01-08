@@ -78,6 +78,9 @@ estoque e de interagir com os clientes, então essa nessecidade inspirou a cria�
 
 #### Exemplo de Resposta
 ```
+    Status: 200 OK
+    
+    
 {
 	"idProduct": 9,
 	"name": "caderno",
@@ -113,6 +116,9 @@ GET http://localhost:8080/product/price
 
 #### Exemplo de resposta
 ```
+    Status: 200 OK
+    
+    
 [
 	{
 		"idProduct": 7,
@@ -160,6 +166,10 @@ PUT http://localhost:8080/product/{idProduto}
 
 #### Exemplo de resposta
 ```
+
+    Status: 200 OK
+    
+    
 {
 	"idProduct": 5,
 	"name": "batedeira",
@@ -177,7 +187,7 @@ PUT http://localhost:8080/product/{idProduto}
 DELETE http://localhost:8080/product/{idProduto}
 ``
 
-##### Obs: Essa rota não tem corpo de resposta, se a operação for bem sucedida voce vera o código de 204.
+#### Obs: Essa rota não devolve menssagem de sucesso o usuário receberá apenas um codigo de status: 204
 
 
 ***
@@ -194,6 +204,9 @@ GET http://localhost:8080/product/find/?name={idProduto}
 ``
 
 ```
+    Status: 200 OK
+    
+    
 [
 	{
 		"idProduct": 2,
