@@ -6,9 +6,7 @@ import com.leandross.lojaAgilStore.dto.UpdateProductDto;
 import com.leandross.lojaAgilStore.entity.ProductEntity;
 import com.leandross.lojaAgilStore.exception.CustomException;
 import com.leandross.lojaAgilStore.repository.ProductRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Comparator;
 import java.util.List;
