@@ -3,6 +3,7 @@ package com.leandross.lojaAgilStore.controller;
 import com.leandross.lojaAgilStore.dto.CreateProductDto;
 import com.leandross.lojaAgilStore.dto.ResponseProductDto;
 import com.leandross.lojaAgilStore.dto.UpdateProductDto;
+import com.leandross.lojaAgilStore.exception.CustomException;
 import com.leandross.lojaAgilStore.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,20 +53,20 @@ public class ProductControler {
 
     @PutMapping("/{idProduct}")
     public ResponseEntity<ResponseProductDto> update(@PathVariable("idProduct") String idProduct,
-            @RequestBody UpdateProductDto updateProductDto) {
+            @RequestBody UpdateProductDto updateProductDto) throws CustomException {
         var product = this.productService.updateProduct(idProduct, updateProductDto);
         return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 
     @DeleteMapping("/{idProduct}")
-    public ResponseEntity<Void> delete(@PathVariable("idProduct") String idProduct) {
+    public ResponseEntity<String> delete(@PathVariable("idProduct") String idProduct) throws CustomException {
         this.productService.deleteProduct(idProduct);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Produto apagado com sucesso");
     }
 
     @GetMapping("/find/")
     public ResponseEntity<List<ResponseProductDto>> getProduct(@RequestParam(required = false) String idProduct,
-            @RequestParam(required = false) String name) {
+            @RequestParam(required = false) String name) throws CustomException {
 
         if (idProduct != null) {
             var products = this.productService.listById(idProduct);
@@ -74,6 +75,6 @@ public class ProductControler {
             var products = this.productService.listByNameParcial(name);
             return ResponseEntity.status(HttpStatus.OK).body(products);
         }
-        return null;
+        throw new CustomException("pesquisa nula");
     }
 }
